@@ -1,0 +1,361 @@
+@font-face {
+    font-family: 'icomoon';
+    src: url('../../fonts/icomoon.eot?uy7w7m');
+    src: url('../../fonts/icomoon.eot?uy7w7m#iefix') format('embedded-opentype'),
+        url('../../fonts/icomoon.ttf?uy7w7m') format('truetype'),
+        url('../../fonts/icomoon.woff?uy7w7m') format('woff'),
+        url('../../fonts/icomoon.svg?uy7w7m#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+#index {
+    background-color: #f5f5f5;
+    font-family: 'Microsoft YaHei', Arial, Helvetica, sans-serif;
+}
+
+#index .w {
+    width: 1200px;
+    margin: auto;
+}
+
+#index li {
+    list-style: none;
+}
+
+#index a {
+    text-decoration: none;
+}
+
+#index .img {
+    border: 0;
+    vertical-align: middle;
+}
+
+#index button {
+    cursor: pointer;
+}
+
+#index .header {
+    height: 70px;
+    background-color: #f5f5f5;
+    margin: 30px auto;
+}
+
+#index .logo {
+    float: left;
+    width: 184px;
+    height: 70px;
+    border-top: none;
+}
+
+#index .nav {
+    float: left;
+    margin-left: 120px;
+    border-top: 4px solid lightsalmon;
+    border-bottom: 2px solid #edeef0;
+    line-height: 70px;
+
+}
+
+#index .nav li {
+    float: left;
+    margin: 0 30px;
+}
+
+#index .nav li a {
+    display: inline-block;
+    padding: 0 15px;
+    height: 69px;
+    font-size: 16px;
+    color: #4c4c4c;
+}
+
+#index .nav li a:hover {
+    color: lightsalmon;
+}
+
+#index .nav span {
+    display: inline-block;
+    font-family: 'icomoon';
+    font-size: large;
+}
+
+#index .banner {
+    height: 600px;
+}
+#index .banner .w {
+    height: 700px;
+    margin-left: 120px;
+}
+
+#index .banner .el-carousel__container {
+    height: 600px;
+
+}
+
+#index .banner .w a {
+    display: block;
+    width: 200px;
+    height: 60px;
+    background-color: rgba(0, 0, 0, .6);
+    font-size: 14px;
+    color: white;
+    font-weight: 400;
+    line-height: 60px;
+    text-decoration: none;
+    padding-left: 30px;
+    margin-left: 38px;
+}
+
+#index .banner .w a:hover {
+    background-color: lightsalmon;
+}
+
+#index .avatar {
+    float: right;
+    border-radius: 50%;
+    height: 64px;
+    width: 64px;
+}
+
+#index .avatar__image {
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+}
+
+#index .avatar a {
+    font-size: small;
+    color: #333;
+    margin-left: 6px;
+}
+
+#index .recommend {
+    float: left;
+    margin-left: 160px;
+}
+
+#index .recommend ul {
+    float: left;
+}
+
+#index .recommend li {
+    float: left;
+    width: 300px;
+    height: 150px;
+    border: 2px solid #4c4c4c;
+    margin-right: 80px;
+    border-radius: 5%;
+}
+
+#index .connect a {
+    display: block;
+    padding: 20px 35px;
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+}
+
+#index .recommend li:hover {
+    box-shadow: 10px 10px 10px -4px rgba(0, 0, 0, .3);
+}
+
+#index .recommend h4 {
+    display: block;
+    padding: 12px 35px;
+}
+
+#index .recommend p {
+    display: block;
+    padding: 5px 35px;
+    color: #4c4c4c;
+}
+
+#index .more a {
+    display: block;
+    float: right;
+    font-size: 14px;
+    font-weight: 400;
+    border: 1px solid #b0b0b0;
+    color: black;
+}
+
+#index .study {
+    float: left;
+    margin-left: 160px;
+    height: 500px;
+    margin: 0px 0px 50px 160px;
+}
+
+#index .box,
+#index .box2,
+#index .box3 {
+    float: left;
+    width: 285px;
+    height: 415px;
+    background-color: rgb(255, 255, 255);
+    margin-right: 20px;
+}
+
+#index .number1,
+#index .number2,
+#index .number3,
+#index .number4 {
+    font-size: 12px;
+    color: #b0b0b0;
+    margin-top: 60px;
+    padding: 0 28px;
+}
+
+#index .box4 {
+    float: left;
+    width: 285px;
+    height: 415px;
+    background-color: rgb(255, 255, 255);
+}
+
+#index .box:hover,
+#index .box2:hover,
+#index .box3:hover,
+#index .box4:hover {
+    box-shadow: 10px 10px 10px -4px rgba(0, 0, 0, .3);
+    transform: translate(-5px);
+}
+
+#index .box img,
+#index .box2 img,
+#index .box3 img,
+#index .box4 img {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+#index .box a,
+#index .box2 a,
+#index .box3 a,
+#index .box4 a {
+    font-size: 20px;
+    padding: 0 28px;
+    text-decoration: none;
+    color: black;
+}
+
+#index .box .content1,
+#index .box2 .content2,
+#index .box3 .content3,
+#index .box4 .content4 {
+    font-size: 14px;
+    padding: 0 28px;
+    color: darkgrey;
+}
+
+#index .amusement {
+    float: left;
+    margin-left: 160px;
+    height: 500px;
+    margin: 0px 0px 100px 160px;
+}
+
+#index .amusement .box5,
+#index .box6,
+#index .box7 {
+    float: left;
+    width: 285px;
+    height: 415px;
+    background-color: rgb(255, 255, 255);
+    margin-right: 20px;
+}
+
+#index .box8 {
+    float: left;
+    width: 285px;
+    height: 415px;
+    background-color: rgb(255, 255, 255);
+}
+
+#index .box5 a,
+#index .box6 a,
+#index .box7 a,
+#index .box8 a {
+    font-size: 20px;
+    padding: 0 28px;
+    text-decoration: none;
+    color: black;
+}
+
+#index .box5:hover,
+#index .box6:hover,
+#index .box7:hover,
+#index .box8:hover {
+    box-shadow: 10px 10px 10px -4px rgba(0, 0, 0, .3);
+    transform: translate(-5px);
+}
+
+#index .box5 img,
+#index .box6 img,
+#index .box7 img,
+#index .box8 img {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+#index .sport,
+#index .game,
+#index .travel,
+#index .eat {
+    font-size: 14px;
+    padding: 0 28px;
+    color: darkgrey;
+}
+
+#index .travelers,
+#index .gamers,
+#index .eaters,
+#index .sporters {
+    font-size: 12px;
+    color: #b0b0b0;
+    margin-top: 60px;
+    padding: 0 28px;
+}
+
+#index .recommend h2 {
+    margin: 50px 550px;
+}
+
+#index .study h2,
+#index .amusement h2 {
+    margin: 50px 560px;
+}
+
+#index .footer {
+    float: left;
+    height: 215px;
+    width: 100%;
+}
+
+#index .footer .w {
+    border-top: 1px solid lightgray;
+    margin-top: 35px;
+}
+
+#index .links dl {
+    float: right;
+    margin-left: 100px;
+}
+
+#index .links dl dt {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+#index .links a {
+    font-size: 12px;
+    color: #333;
+}
+
+#index #pointer_box {
+    cursor: pointer;
+}
