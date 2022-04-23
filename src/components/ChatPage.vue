@@ -18,46 +18,18 @@
                 <a href="/individual">{{individual.nick_name}}</a>
             </div>
         </div>
-        <div class="num1 w">
+        <div class="myforum w"><button>去发帖</button></div>
+        <div class="num2 w" v-for="item in Lister" :key="item">
             <div class="user1 w">
-                <a href="#"><img class="user_image" src="../assets/imgs/user.png"></a>
+                <a href="#"><img class="user_image" :src="GetThePerson(item.Publisher).Avatar"></a>
             </div>
             <div class="name">
-                <span>小雨雨雨雨宇</span>
+                <span>{{GetThePerson(item.Publisher).Name}}</span>
             </div>
-            <div class="discuss1">
-                <h2>今天早上在操场捡了一张校园卡</h2>
-                <p>丢失者请联系我,qq23423198</p>
-                <p>是在靠近体育场一侧,是19级王同学的卡</p>
-                <span>2021年4月23日</span>
-            </div>
-        </div>
-        <div class="num2 w">
-            <div class="user1 w">
-                <a href="#"><img class="user_image" src="../assets/imgs/user.png"></a>
-            </div>
-            <div class="name">
-                <span>小雨雨雨雨宇</span>
-            </div>
-            <div class="discuss1">
-                <h2>今天早上在操场捡了一张校园卡</h2>
-                <p>丢失者请联系我,qq23423198</p>
-                <p>是在靠近体育场一侧,是19级王同学的卡</p>
-                <span>2021年4月23日</span>
-            </div>
-        </div>
-        <div class="num1 w" >
-            <div class="user1 w">
-                <a href="#"><img class="user_image" src="../assets/imgs/user.png"></a>
-            </div>
-            <div class="name">
-                <span>小雨雨雨雨宇</span>
-            </div>
-            <div class="discuss1">
-                <h2>今天早上在操场捡了一张校园卡</h2>
-                <p>丢失者请联系我,qq23423198</p>
-                <p>是在靠近体育场一侧,是19级王同学的卡</p>
-                <span>2021年4月23日</span>
+            <div class="discuss2">
+                <h3>{{item.Title}}</h3>
+                <p>{{item.Content}}</p>
+                <span>{{item.CreateAt}}</span>
             </div>
         </div>
     </div>
@@ -106,7 +78,23 @@ export default {
             .catch(function (error) {
     console.log(error);
   })
-    }
+    },
+    methods: {
+        GetThePerson(email) {
+            var person ={
+                 Name: '',
+                 Avatar: '',
+            }
+            axios.get('/api/v1/user/others?email='+email).then(function (response) {  
+                        person.Name=response.data.data.Name
+                        person.Avatar=response.data.data.IMG.Avatar
+                })
+            .catch(function (error) {
+    console.log(error);
+        })
+        return person
+    },
+}
 }
 </script>
 <style scoped>
