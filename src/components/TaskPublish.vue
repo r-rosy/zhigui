@@ -35,15 +35,20 @@
   </div>
   
   <div class="submit">
-    <el-upload action="" :on-change="function (file, fileList) {
-      console.log(file, fileList);elchange=true;
-    }
-    " :on-remove="function (file, fileList) {
-      console.log(file, fileList);elchange=false;
-    }
-    " :file-list="fileList" :auto-upload="false" limit="1" list-type="picture-card">
-     <i class="el-icon-plus"></i>
-</el-upload>
+    <el-upload
+              action="' '" 
+              list-type="picture-card"
+              :limit="1"
+              show-file-list
+              :auto-upload="false"
+              :on-change="change"
+              multiple
+            >
+              <i class="el-icon-plus"></i>
+            </el-upload>
+            <el-dialog :visible.sync="dialogVisible">
+              <img width="100%" :src="dialogImageUrl" alt="" />
+        </el-dialog>
 <el-button type="plain" @click="submit">提交</el-button>
         </div>
     </div>
@@ -55,8 +60,8 @@ import axios from 'axios';
 export default {
     data() {
         return {
-          elchange: false,
-          fileList: [],
+          dialogImageUrl: "",
+          dataList: [],
           header: {
                 'Authorization': 'Bearer:'+localStorage.getItem('zhigui-token'),
             },
@@ -392,7 +397,7 @@ export default {
         }
       },
       check: function() {
-        if(this.value1.length==0||this.value2.length==0||this.text==''||this.textarea==''||length(this.fileList)==0)
+        if(this.value1.length==0||this.value2.length==0||this.text==''||this.textarea==''||this.dataList.length==0)
         {
           this.$message('请填写完整信息并上传图片');
           return false;
@@ -402,13 +407,14 @@ export default {
 	}
         return true;
       },
-      handleelchange(id,fileList) {
-      let formdata = new FormData()
-      fileList.map(item => { //fileList本来就是数组，就不用转为真数组了
-        formdata.append("file", item.raw)  //将每一个文件图片都加进formdata
-      })
-      formdata.append("id", id)
-       axios.post('/api/v1/tasks/publish/picture', formdata).then(res => { console.log(res);return res.status; })
+      change(file, fileList) {
+   //将每次图片数组变化的时候，实时的进行监听，更改数组里面的图片数据
+      var arr = [];
+      fileList.forEach((item) => {
+        arr.push(item.raw);
+      });
+      this.dataList = arr;
+      console.log(arr);
     },
       submit: function() {
         var pointer=this;
@@ -417,23 +423,48 @@ export default {
           this.request.tag_id=this.map(this.value1[2])+"";
           this.request.award=Number(this.text,10)
           this.request.content=this.textarea
+          this.request.method=this.value2[1]
           axios.post('/api/v1/tasks/publish',this.request).then(function (response) {
                 console.log(response)
                     if(response.status==200)
                     {
-                        pointer.id=response.data.data.Task.ID+""
-                        var status=pointer.elchange(pointer.id,pointer.fileList)
-                        if(status==200)
-                        {
-                            pointer.$message('发布成功');
-                            pointer.value1=[];
-                            pointer.value2=[];
-                            pointer.text='';
-                            pointer.textarea='';
-                            pointer.$router.push('/task/publish');
-                        }else {
-                            pointer.$message('图片发布失败');
-                        }
+                        pointer.id=response.data.data.Task.ID+"";
+                        let config = {
+        timeout: 30000,
+        headers: {
+          "Content-Type": "multipart/form-data", //设置headers
+        },
+      };
+     const formData = new FormData();
+    // 首先判断是否上传了图片，如果上传了图片，将图片存入到formData中
+      console.log(pointer.dataList);
+      if (pointer.dataList) {
+        pointer.dataList.forEach((item, index) => {
+           console.log(index)
+          formData.append("file", item);
+        });
+      }
+  // console.log(formData.get(0));
+  formData.append("id", pointer.id);
+         axios.post(
+            "/api/v1/tasks/publish/picture", //请求后端的url
+            formData,
+            config
+          )
+          .then((res) => {
+            console.log(res)
+            if (res.status == 200) {
+              pointer.$message.success("发布成功");
+              pointer.$router.push('/task')
+            } else {
+              this.$message('任务图片上传失败')
+              pointer.$router.push('/task/publish')
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      //用户可以在上传完成之后将数组给清空，这里直接跳转到首页了，没有做清空的操作
                         
                     }else {
                         pointer.$message(response.data.error);
