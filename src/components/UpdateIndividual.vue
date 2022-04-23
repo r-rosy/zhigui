@@ -123,6 +123,10 @@ export default {
         alert('上传成功!')
       },
       beforeAvatarUpload(file) {
+        this.$message({
+          message: '上传中...',
+          duration: 3 * 1000,
+        });
         const isLt2M = file.size / 1024 / 1024 < 2;
         if (!isLt2M) {
           this.$message.error('上传头像图片大小不能超过 2MB!');

@@ -8,6 +8,7 @@ import UpdateIndividualPage from '../components/UpdateIndividual.vue'
 import TaskPage from '../components/TaskPage.vue'
 import TaskPublish from '../components/TaskPublish.vue'
 import FieldPage from '../components/FieldPage.vue'
+import PayPage from '../components/PayPage.vue'
 import Axios from 'axios'
 import ElementUI from 'element-ui'
  
@@ -52,10 +53,15 @@ const router = new Router({
       name: 'task_publish'
     },
     {
-      path:'/field',
+      path:'/field/:type',
       component: FieldPage,
       name: 'field'
-    }
+    },
+    {
+      path:'/pay',
+      component: PayPage,
+      name: 'pay'
+    },
   ]
 })
 export default router
