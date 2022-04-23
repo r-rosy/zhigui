@@ -9,6 +9,8 @@ import TaskPage from '../components/TaskPage.vue'
 import TaskPublish from '../components/TaskPublish.vue'
 import FieldPage from '../components/FieldPage.vue'
 import PayPage from '../components/PayPage.vue'
+import TaskDetail from '../components/TaskDetail.vue'
+import ChatPage from '../components/ChatPage.vue'
 import Axios from 'axios'
 import ElementUI from 'element-ui'
  
@@ -61,6 +63,16 @@ const router = new Router({
       path:'/pay',
       component: PayPage,
       name: 'pay'
+    },
+    {
+      path:'/task/detail/:id',
+      component: TaskDetail,
+      name: 'task_detail'
+    },
+    {
+      path:'/chat',
+      component: ChatPage,
+      name: 'chat'
     },
   ]
 })

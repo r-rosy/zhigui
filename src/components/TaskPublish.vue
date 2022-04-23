@@ -454,6 +454,7 @@ export default {
           .then((res) => {
             console.log(res)
             if (res.status == 200) {
+              pointer.$message('等待上传中...');
               pointer.$message.success("发布成功");
               pointer.$router.push('/task')
             } else {

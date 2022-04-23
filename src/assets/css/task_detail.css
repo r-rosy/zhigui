@@ -1,0 +1,186 @@
+@font-face {
+    font-family: 'icomoon';
+    src: url('../../fonts/icomoon.eot?uy7w7m');
+    src: url('../../fonts/icomoon.eot?uy7w7m#iefix') format('embedded-opentype'),
+        url('../../fonts/icomoon.ttf?uy7w7m') format('truetype'),
+        url('../../fonts/icomoon.woff?uy7w7m') format('woff'),
+        url('../../fonts/icomoon.svg?uy7w7m#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+#task_detail {
+    background-color: #f5f5f5;
+    font-family: 'Microsoft YaHei', Arial, Helvetica, sans-serif;
+}
+
+#task_detail .w {
+    width: 1200px;
+    margin: auto;
+}
+
+#task_detail li {
+    list-style: none;
+}
+
+#task_detail a {
+    text-decoration: none;
+}
+
+#task_detail .img {
+    border: 0;
+    vertical-align: middle;
+}
+
+#task_detail button {
+    cursor: pointer;
+}
+
+#task_detail .header {
+    height: 70px;
+    background-color: #f5f5f5;
+    margin: 30px auto;
+}
+
+#task_detail .logo {
+    float: left;
+    width: 184px;
+    height: 70px;
+    border-top: none;
+}
+
+#task_detail .nav {
+    float: left;
+    margin-left: 120px;
+    border-top: 4px solid lightsalmon;
+    border-bottom: 2px solid #edeef0;
+    line-height: 70px;
+
+}
+
+#task_detail .nav li {
+    float: left;
+    margin: 0 30px;
+}
+
+#task_detail .nav li a {
+    display: inline-block;
+    padding: 0 15px;
+    height: 69px;
+    font-size: 16px;
+    color: #4c4c4c;
+}
+
+#task_detail .nav li a:hover {
+    color: lightsalmon;
+}
+
+#task_detail .nav span {
+    display: inline-block;
+    font-family: 'icomoon';
+    font-size: large;
+}
+
+#task_detail .avatar {
+    float: right;
+    border-radius: 50%;
+    height: 64px;
+    width: 64px;
+}
+
+#task_detail .avatar__image {
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+}
+
+#task_detail .avatar a {
+    font-size: small;
+    color: #333;
+    margin-left: 6px;
+}
+
+#task_detail .back {
+    float: left;
+    width: 50%;
+    height: 50px;
+    margin-top: 30px;
+    background-color: lightsalmon;
+}
+
+#task_detail .back span {
+    display: inline-block;
+    color: #333;
+    font-weight: 700;
+    background-color: lightsalmon;
+    margin: 17px;
+}
+
+#task_detail .back span a {
+    color: #333;
+}
+
+#task_detail .like {
+    float: right;
+    width: 50%;
+    height: 50px;
+    margin-top: 30px;
+    background-color: lightsalmon;
+}
+
+#task_detail .like span {
+    display: block;
+    float: right;
+    color: #333;
+    background-color: lightsalmon;
+    margin: 20px;
+}
+
+#task_detail .task_more {
+    float: left;
+    padding-top: 30px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #4c4c4c;
+    border-top: none;
+    min-height: 300px;
+    margin-bottom: 50px;
+}
+
+#task_detail .task_more h2 {
+    margin-bottom: 30px;
+    margin-left: 40px;
+}
+
+#task_detail .task_more p {
+    line-height: 2rem;
+    margin-top: 30px;
+    margin-left: 40px;
+    margin-bottom: 30px;
+}
+
+#task_detail .task_more span {
+    margin-left: 40px;
+    margin-bottom: 30px;
+}
+
+#task_detail .task_more span {
+    color: grey;
+    font-size: normal;
+}
+
+#task_detail .accept {
+    width: 100px;
+    position: inherit;
+    margin: auto;
+}
+
+#task_detail .accept button {
+    width: 100px;
+    height: 50px;
+    font-size: normal;
+    font-weight: 700;
+    color: white;
+    background-color: lightsalmon;
+    border: none;
+}
