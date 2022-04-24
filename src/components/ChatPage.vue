@@ -19,19 +19,47 @@
             </div>
         </div>
         <div class="myforum w"><button>去发帖</button></div>
-        <div class="num2 w" v-for="item in Lister" :key="item.ID">
+        <div class="num1 w">
             <div class="user1 w">
-                <a href="#"><img class="user_image"  :src="persons[id].Avatar"></a>
+                <a href="#"><img class="user_image" src="../assets/imgs/user.png"></a>
             </div>
             <div class="name">
-                <span>{{persons[id].Name}}</span>
+                <span>小雨雨雨雨宇</span>
             </div>
-            <div class="discuss2">
-                <h3>{{item.Title}}</h3>
-                <p>{{item.Content}}</p>
-                <span>{{item.CreateAt}}</span>
+            <div class="more">
+                <a href="/chat/detail/1">&gt;&gt;详情</a>
+                <ul>
+                    <li></li><span>❤</span>点赞
+                    <li></li><span>✉</span>评论
+                </ul>
             </div>
-            {{id}}
+            <div class="discuss1">
+                <h2>今天早上在操场捡了一张校园卡</h2>
+                <p>丢失者请联系我,qq23423198</p>
+                <p>是在靠近体育场一侧,是19级王同学的卡</p>
+                <span>2021年4月23日</span>
+            </div>
+        </div>
+        <div class="num2 w">
+            <div class="user1 w">
+                <a href="#"><img class="user_image" src="../assets/imgs/user.png"></a>
+            </div>
+            <div class="name">
+                <span>潇潇暮雨</span>
+            </div>
+            <div class="more">
+                <a href="/chat/detail/1">&gt;&gt;详情</a>
+                <ul>
+                    <li></li><span>❤</span>点赞
+                    <li></li><span>✉</span>评论
+                </ul>
+            </div>
+            <div class="discuss1">
+                <h2>分享华中科技大学计算机考研全套资料</h2>
+                <p>有兴趣的可以联系我qq2021214068</p>
+                <p>本人19级在校生,建议白天有课晚上联系</p>
+                <span>2021年3月30日</span>
+            </div>
         </div>
     </div>
 </template>
@@ -83,7 +111,6 @@ export default {
             .catch(function (error) {
     console.log(error);
         })
-        //pointer.id=2
                         }
                     }else {
                         pointer.$message(response.data.error);

@@ -133,7 +133,7 @@
     float: right;
     color: #333;
     background-color: lightsalmon;
-    margin: 20px;
+    margin: 17px;
 }
 
 #task_detail .task_more {
@@ -141,7 +141,7 @@
     padding-top: 30px;
     width: 100%;
     background-color: rgb(255, 255, 255);
-    box-shadow: 10px 10px 10px -4px rgba(0, 0, 0, 0.3);
+    border: 1px solid #4c4c4c;
     border-top: none;
     min-height: 300px;
     margin-bottom: 50px;
@@ -154,9 +154,8 @@
 
 #task_detail .task_more p {
     line-height: 2rem;
-    margin-top: 30px;
     margin-left: 40px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 #task_detail .task_more span {

@@ -49,7 +49,7 @@
         </div>
         <div class="study w">
             <h2>学习区</h2>
-            <div class="box" onclick="window.open('./study.html')" id="pointer_box">
+            <div class="box" onclick="window.open('./field/math')" id="pointer_box">
                 <img src="../assets/imgs/math修改版.jpg" alt="">
                 <a href="">数理专区</a>
                 <p class="content1">
