@@ -74,20 +74,20 @@
 }
 
 
-#task_publish .Avatar {
+#task_publish .avatar {
     float: right;
     border-radius: 50%;
     height: 64px;
     width: 64px;
 }
 
-#task_publish .Avatar__image {
+#task_publish .avatar__image {
     border-radius: 50%;
     height: 100%;
     width: 100%;
 }
 
-#task_publish .Avatar a {
+#task_publish .avatar a {
     font-size: small;
     color: #333;
     margin-left: 6px;

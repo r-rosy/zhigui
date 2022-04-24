@@ -29,7 +29,7 @@
         <div class="publish_new" >
                     <el-divider></el-divider>
             <span>还在等什么,去发布新任务吧！</span>
-            <el-button plain>>>>去发布</el-button>
+            <el-button plain @click="To('/task/publish')">>>>去发布</el-button>
         </div>
             <el-divider></el-divider>
         <div class="rank">
@@ -166,8 +166,7 @@ export default {
                     if(response.status==200)
                     {
                         pointer.number=response.data.data.NUM
-                        pointer.Lister = response.data.data.TASKS
-                        console.log(pointer.Lister)
+                        pointer.Lister = response.data.data.Tasks
                     }else {
                         pointer.$message(response.data.error);
                         ElementUI.Message({  
@@ -276,8 +275,12 @@ export default {
             default:
               return 0
         }
+    },
+    To(Url) {
+        this.$router.push(Url)
     }
-}
+},
+
 }
 </script>
 <style scoped>
