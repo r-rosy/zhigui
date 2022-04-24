@@ -13,8 +13,8 @@
                     <li><span></span><a href="/individual">个人中心</a></li>
                 </ul>
             </div>
-            <div class="Avatar">
-                <img class="Avatar__image" :src="individual.Avatar" >
+            <div class="avatar">
+                <img class="avatar__image" :src="individual.Avatar" >
                 <a href="/individual">{{individual.nick_name}}</a>
             </div>
         </div>

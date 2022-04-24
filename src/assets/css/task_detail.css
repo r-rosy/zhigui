@@ -174,7 +174,7 @@
     margin: auto;
 }
 
-#task_detail .accept button {
+#task_detail .accept .the_button {
     width: 100px;
     height: 50px;
     font-size: normal;

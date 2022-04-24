@@ -100,6 +100,7 @@ export default {
                             type: 'success',
                             message: '操作成功，请等待收款审核！',
                         })
+                        this.$router.push('/individual')
                     }
                     if (action=='cancel')
                     {

@@ -40,8 +40,10 @@
 </div>
             </div>
             <div class="accept">
-                <button v-if="details.Confirm.accepter!=individual.email" @click="GetTheTask">接受任务</button>
-                <el-button type="info" disabled v-else>您已接受</el-button>
+                <button v-if="details.status=='Unaccepted'&&mywill=='未发送意愿'" @click="GetTheTask" class="the_button">申请接受任务</button>
+                <el-button v-else-if="mywill!='未发送意愿'&&details.status=='Unaccepted'" type="info" disabled >您已申请</el-button>
+                <el-button v-else-if="mywill=='未发送意愿'&&details.status!='Unaccepted'" type="info" disabled >已被接受</el-button>
+                <el-button v-else type="info" disabled >已被接受</el-button>
             </div>
         </div>
 
@@ -53,6 +55,7 @@ import ElementUI from 'element-ui';
 export default {
     data() {
         return {
+            mywill: '',
             tags: [],
             individual: {},
             details: {
@@ -80,10 +83,11 @@ export default {
         axios.get('/api/v1/tasks/details?id=' + this.$route.params.id).then(function(response) {
             console.log(response)
                 if (response.status == 200) {
-                    pointer.details = response.data.data
-                    pointer.tags.push(response.data.data.prefecture_id)
-                    pointer.tags.push(response.data.data.tag)
-                    pointer.tags.push(response.data.data.method)
+                    pointer.mywill=response.data.data.MyWilli;
+                    pointer.details = response.data.data.Task
+                    pointer.tags.push(response.data.data.Task.prefecture_id)
+                    pointer.tags.push(response.data.data.Task.tag)
+                    pointer.tags.push(response.data.data.Task.method)
                 } else {
                     pointer.$message(response.data.error);
                     ElementUI.Message({
@@ -98,14 +102,17 @@ export default {
     methods: {
         GetTheTask() {
             var pointer=this;
-            axios.post('/api/v1/tasks/accept',{'task_id':this.details.ID+""}).then(function (response) {
+            const params = new URLSearchParams();
+            params.append('task_id', this.details.ID+"")
+            axios.post('/api/v1/tasks/accept',params).then(function (response) {
                 console.log(response)
                     if(response.status==200)
                     {
                         pointer.$message({
-                            message: '接受成功',
+                            message: '申请成功',
                             type: 'success'
                         })
+                        pointer.$router.push('/task')
                     }else {
                         pointer.$message(response.data.error);
                         ElementUI.Message({  

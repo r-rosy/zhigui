@@ -63,6 +63,12 @@
                 回复：<a href="chat.html">前端和后端分别是做什么的？</a><br>
                 回复：<a href="chat.html">参加计算机设计大赛需要做哪些准备？</a><br>
             </div>
+            <div class="left2">
+                <p>待支付</p>
+            </div>
+            <div class="accepttask">
+                <a href="/pay">球球帮孩子辅导一下高数吧，上学期差点挂了</a><br>
+            </div>
         </div>
     </div>
     </div>
