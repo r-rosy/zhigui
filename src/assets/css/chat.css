@@ -167,3 +167,36 @@
     color: #333;
     font-weight: 400;
 }
+
+#chat .more {
+    float: right;
+    margin-right: 40px;
+}
+
+#chat .more a {
+    color: #333;
+    display: inline-block;
+    margin-bottom: 150px;
+}
+
+#chat .more li {
+    display: block;
+    float: right;
+    margin-bottom: 10px;
+}
+
+#chat .myforum {
+    width: 350px;
+    height: 50px;
+    margin-right: 0px;
+}
+
+#chat .myforum button {
+    width: 90px;
+    height: 40px;
+    background-color: lightsalmon;
+    color: white;
+    font-weight: 700;
+    font-size: medium;
+    border: none;
+}

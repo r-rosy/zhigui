@@ -6,11 +6,11 @@
         </div>
         <div class="nav">
             <ul>
-                <li><span></span><a href="index.html">首页</a></li>
-                <li><span></span><a href="#">聊聊</a></li>
-                <li><span></span><a href="#">任务栏</a></li>
-                <li><span></span><a href="#">排行榜</a></li>
-                <li><span></span><a href="indiviual.html">个人中心</a></li>
+                    <li><span></span><a href="/index">首页</a></li>
+                    <li><span></span><a href="/chat">聊聊</a></li>
+                    <li><span></span><a href="/task">任务栏</a></li>
+                    <li><span></span><a href="/list">排行榜</a></li>
+                    <li><span></span><a href="/individual">个人中心</a></li>
             </ul>
         </div>
         <div class="avatar">
@@ -18,9 +18,11 @@
                 <a href="/individual">{{individual.nick_name}}</a>
             </div>
         </div>
-    <div class="publish">
-        <p>在此发布你的新任务!</p>
+    <div class="publish w">
+        <div class="new">
         <el-button @click="To('/task/publish')">New+</el-button>
+      </div>
+      <div class="new_p"><span>在此发布你的新任务!</span></div>
         <el-table :data="Lister" height="100%" stript style="width: 100%">
         <el-table-column prop="prefecture_id" label="专区" width="180" > </el-table-column>
         <el-table-column prop="tag" label="分类" width="180" > </el-table-column>

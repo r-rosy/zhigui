@@ -7,11 +7,10 @@
         <div class="nav">
             <ul>
                 <li><span></span><a href="/index">首页</a></li>
-                <li><span></span><a href="#">聊聊</a></li>
-                <li><span></span><a href="/task">任务栏</a></li>
-                <li><span></span><a href="#">排行榜</a></li>
-                <li><span></span><a href="#">赛事实况</a></li>
-                <li><span></span><a href="/indiviual">个人中心</a></li>
+                    <li><span></span><a href="/chat">聊聊</a></li>
+                    <li><span></span><a href="/task">任务栏</a></li>
+                    <li><span></span><a href="/list">排行榜</a></li>
+                    <li><span></span><a href="/individual">个人中心</a></li>
             </ul>
         </div>
         <div class="avatar">
@@ -70,12 +69,12 @@
                 <th>状态</th>
                 <th>热度</th>
             </tr>
-            <tr v-for="task in tasks" :key="task">
-                <td>{{task.category}}</td>
-                <td>{{task.title}}</td>
+            <tr v-for="task in Lister" :key="task">
+                <td>{{task.tag}}</td>
+                <td>{{task.content}}</td>
                 <td>{{task.award}}元</td>
-                <td>{{task.status}}</td>
-                <td>{{task.hot}}</td>
+                <td>{{task.method}}</td>
+                <td>{{task.willing_num}}</td>
             </tr>
         </table>
     </div>
@@ -92,6 +91,7 @@ export default {
     name: 'FieldPage',
     data() {
         return {
+            number: 0,
             prefecture_id : 0,
             tag: '',
             currentpage: 0,
@@ -165,7 +165,9 @@ export default {
                 console.log(response)
                     if(response.status==200)
                     {
-                        pointer.individual = response.data.data
+                        pointer.number=response.data.data.NUM
+                        pointer.Lister = response.data.data.TASKS
+                        console.log(pointer.Lister)
                     }else {
                         pointer.$message(response.data.error);
                         ElementUI.Message({  

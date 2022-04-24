@@ -11,6 +11,7 @@ import FieldPage from '../components/FieldPage.vue'
 import PayPage from '../components/PayPage.vue'
 import TaskDetail from '../components/TaskDetail.vue'
 import ChatPage from '../components/ChatPage.vue'
+import ListPage from '../components/ListPage.vue'
 import Axios from 'axios'
 import ElementUI from 'element-ui'
  
@@ -74,6 +75,11 @@ const router = new Router({
       component: ChatPage,
       name: 'chat'
     },
+    {
+      path:'/list',
+      component: ListPage,
+      name: 'list'
+    }
   ]
 })
 export default router

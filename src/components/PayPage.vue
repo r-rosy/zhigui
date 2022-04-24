@@ -6,17 +6,17 @@
         </div>
         <div class="nav">
             <ul>
-                <li><span></span><a href="index.html">首页</a></li>
-                <li><span></span><a href="#">聊聊</a></li>
-                <li><span></span><a href="#">任务栏</a></li>
-                <li><span></span><a href="#">排行榜</a></li> 
-                <li><span></span><a href="indiviual.html">个人中心</a></li>
+                <li><span></span><a href="/index">首页</a></li>
+                    <li><span></span><a href="/chat">聊聊</a></li>
+                    <li><span></span><a href="/task">任务栏</a></li>
+                    <li><span></span><a href="/list">排行榜</a></li>
+                    <li><span></span><a href="/individual">个人中心</a></li>
             </ul>
         </div>
         <div class="avatar">
-            <img class="avatar__image" src="../assets/imgs/user.png" >
-            <a href="#">登录|注册</a>
-        </div>
+                <img class="avatar__image" :src="individual.Avatar" >
+                <a href="/individual">{{individual.nick_name}}</a>
+            </div>
     </div>
       <div class="w">
             <div class="pay">
@@ -58,14 +58,34 @@
 </div>
 </template>
 <script>
+import axios from 'axios';
+import ElementUI from 'element-ui';
 export default {
     data() {
         return {
+            individual : {},
             PayMethod: '微信',
             PayMoney: '100',
             PayUrl: require('../assets/imgs/收款码.jpg'),
         }
     },
+    mounted: function() {
+        let pointer=this
+            axios.get('/api/v1/user/info').then(function (response) {
+                console.log(response)
+                    if(response.status==200)
+                    {
+                        pointer.individual = response.data.data
+                    }else {
+                        pointer.$message(response.data.error);
+                        ElementUI.Message({  
+                        message: response.data.message.Message
+                        })
+                    }
+                })
+            .catch(function (error) {
+    console.log(error);
+  }) },
     methods: {
         Open: function () {
             this.$alert('<strong><img src='+ this.PayUrl + ' width=350px height=400px">','请扫描下方二维码进行支付：', {

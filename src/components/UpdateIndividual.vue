@@ -7,10 +7,10 @@
         <div class="nav">
             <ul>
                 <li><span></span><a href="/index">首页</a></li>
-                <li><span></span><a href="#">聊聊</a></li>
-                <li><span></span><a href="tasks.html">任务栏</a></li>
-                <li><span></span><a href="list.html">排行榜</a></li>
-                <li><span></span><a href="/indiviual">个人中心</a></li>
+                    <li><span></span><a href="/chat">聊聊</a></li>
+                    <li><span></span><a href="/task">任务栏</a></li>
+                    <li><span></span><a href="/list">排行榜</a></li>
+                    <li><span></span><a href="/individual">个人中心</a></li>
             </ul>
         </div>
     </div>
