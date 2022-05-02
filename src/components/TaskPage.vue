@@ -41,7 +41,7 @@
     </el-table-column>
       </el-table>
       <div class="pagi">
-        <el-pagination background layout="prev, pager, next" :total="number" :page-size="11" :current-page.sync="currentpage">
+        <el-pagination background layout="prev, pager, next" :total="number" :page-size="11" :current-page.sync="currentpage" style="text-align:center;background-color:white">
     </el-pagination>
     </div>
     </div>

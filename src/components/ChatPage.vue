@@ -18,113 +18,61 @@
                 <a href="/individual">{{individual.nick_name}}</a>
             </div>
         </div>
-        <div class="myforum w"><button>去发帖</button></div>
-        <div class="num1 w">
-            <div class="user1 w">
-                <a href="#"><img class="user_image" src="../assets/imgs/user.png"></a>
+        <div  v-for="item,index in Lister" :key="index" class="num2 w">
+             <div class="user1 w">
+                <a href="#"><img class="user_image" :src="item.User.IMG"></a>
             </div>
             <div class="name">
-                <span>小雨雨雨雨宇</span>
+                <span><h3>{{item.User.Name}}</h3></span>
             </div>
             <div class="more">
-                <a href="/chat/detail/1">&gt;&gt;详情</a>
+                <a :href="'/chat/detail/'+item.Posts.ID+''">&gt;&gt;详情</a>
                 <ul>
                     <li></li><span>❤</span>点赞
                     <li></li><span>✉</span>评论
                 </ul>
             </div>
             <div class="discuss1">
-                <h2>今天早上在操场捡了一张校园卡</h2>
-                <p>丢失者请联系我,qq23423198</p>
-                <p>是在靠近体育场一侧,是19级王同学的卡</p>
-                <span>2021年4月23日</span>
+                <h2>{{item.Posts.Title}}</h2>
+                <p>{{item.Posts.Content}}</p>
+                <span>{{item.Posts.CreatedAt}}</span>
             </div>
         </div>
-        <div class="num2 w">
-            <div class="user1 w">
-                <a href="#"><img class="user_image" src="../assets/imgs/user.png"></a>
-            </div>
-            <div class="name">
-                <span>潇潇暮雨</span>
-            </div>
-            <div class="more">
-                <a href="/chat/detail/1">&gt;&gt;详情</a>
-                <ul>
-                    <li></li><span>❤</span>点赞
-                    <li></li><span>✉</span>评论
-                </ul>
-            </div>
-            <div class="discuss1">
-                <h2>分享华中科技大学计算机考研全套资料</h2>
-                <p>有兴趣的可以联系我qq2021214068</p>
-                <p>本人19级在校生,建议白天有课晚上联系</p>
-                <span>2021年3月30日</span>
-            </div>
+        <div class="pagi">
+        <el-pagination background layout="prev, pager, next" :total="number" :page-size="11" :current-page.sync="currentpage" style="text-align:center;background-color:white">
+        </el-pagination>
         </div>
     </div>
 </template>
 <script>
-import axios from 'axios'
-import ElementUI from 'element-ui'
+import request from '../methods/http/sendrequest.js'
 export default {
     data() {
         return {
             id: 0,
-            persons: [{
-                Name:  '',
-                Avatar: '',
-            }],
+            currentpage: 0,
+            persons: [],
             number: 0,
             individual: {},
             Lister: [],
+            pages: {
+                limit: 11,
+                page: 0,
+            }
             }
     },
     mounted: function() {
         let pointer=this
-            axios.get('/api/v1/user/info').then(function (response) {
-                console.log(response)
-                    if(response.status==200)
-                    {
-                        pointer.individual = response.data.data
-                    }else {
-                        pointer.$message(response.data.error);
-                        ElementUI.Message({  
-                        message: response.data.message.Message
-                        })
-                    }
-                })
-            .catch(function (error) {
-    console.log(error);
-  })
-            axios.get('/api/v1/forum?limit=11&page=0').then(function (response) {
-                console.log(response)
-                    if(response.status==200)
-                    {
-                        pointer.number=response.data.data.NUM
-                        pointer.Lister = response.data.data.POSTS
-                        for(let i=0;i<pointer.Lister.length;i++)
-                        {
-                            axios.get('/api/v1/user/others?email='+pointer.Lister[i].Publisher).then(function (response) { 
-                        pointer.persons[pointer.id]={Name:response.data.data.Name,Avatar:response.data.data.IMG.Avatar}
-                        pointer.id++
-                })
-            .catch(function (error) {
-    console.log(error);
-        })
-                        }
-                    }else {
-                        pointer.$message(response.data.error);
-                        ElementUI.Message({  
-                        message: response.data.message.Message
-                        })
-                    }
-                })
-            .catch(function (error) {
-    console.log(error);
-  })
+        request.GetUserBaseInfo(pointer)
+
+        request.HttpRequest(pointer,'/api/v1/forum?limit='+this.pages.limit+''+'&page='+this.pages.page+'','get',function(response,pointer)
+            {
+                pointer.number=response.data.data.NUM
+                pointer.Lister = response.data.data.Posts
+            },null)   
+                         
     },
     methods: {
-         
     },
 }
 </script>

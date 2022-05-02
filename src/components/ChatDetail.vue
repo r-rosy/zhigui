@@ -18,10 +18,10 @@
                 <a href="/individual">{{individual.nick_name}}</a>
             </div>
             <div class="back w">
-                <span><a href="/task">&lt;&lt;退出</a></span>
+                <span><a href="/chat">&lt;返回</a></span>
             </div>
             <div class="like w">
-                <span>热度:{{details.willing_num}}</span>
+                <span>热度:{{details.MyWilli=='未发送意愿'?0:details.MyWilli}}</span>
             </div>
             <div class="task_more w">
                 <h2>今天早上在操场捡了一张校园卡</h2>
@@ -30,25 +30,50 @@
                 <p>发布者： 小雨雨雨雨宇</p>
                 <p>2021年4月23日</p>
                 
-                <div class="demo-image__preview">
-  <el-image v-if="details.Image.Length==0"
+            <div class="demo-image__preview">
+  <el-image v-if="details.Task.Image.Length==0"
     style="width: 100px; height: 100px"
-    :src="details.Image[0]" 
+    :src="details.Task.Image[0]" 
     :preview-src-list="srcList">
   </el-image>
-</div>
+    </div>    
+        </div>
+    <el-divider></el-divider>
+    <div>
+    <div v-for="item,index in comments" :key="index" class="comment_box">
+        <div class="comment">
+            <div class="comment_detail">
+                <el-avatar class="comment_avatar__image" :size="50" :src="item.Avatar"></el-avatar>
+                <span>{{item.UserName}}</span>
+            </div>
+            <div class="comment_content">
+                <p>{{item.Content}}</p>
+            </div>
+            <div class="comment_time">
+                <span>{{item.CreatedAt}}</span>
+            </div>
+        </div> 
+    </div>
+    </div>
+            <div>
+    <el-divider></el-divider>
+<el-input
+  type="textarea"
+  :autosize="{ minRows: 10, maxRows: 15}"
+  placeholder="请输入内容"
+  v-model="text">
+</el-input>
             </div>
             <div class="accept">
-                <button v-if="details.Confirm.accepter!=individual.email" @click="GetTheTask">评论</button>
-                <el-button type="info" disabled v-else>您已接受</el-button>
+                <button  @click="Comment" class="the_button">发布评论</button>
             </div>
         </div>
 
     </div>
 </template>
 <script>
-import axios from 'axios';
 import ElementUI from 'element-ui';
+import request from '../methods/http/sendrequest.js';
 export default {
     data() {
         return {
@@ -56,65 +81,57 @@ export default {
             individual: {},
             details: {
             },
+            text: '',
+            comments: [],
             }
 
     },
     mounted: function() {
         let pointer = this;
-        axios.get('/api/v1/user/info').then(function (response) {
-                console.log(response)
-                    if(response.status==200)
-                    {
-                        pointer.individual = response.data.data
-                    }else {
-                        pointer.$message(response.data.error);
-                        ElementUI.Message({  
-                        message: response.data.message.Message
-                        })
-                    }
-                })
-            .catch(function (error) {
-    console.log(error);
-  })
-        axios.get('/api/v1/tasks/details?id=' + this.$route.params.id).then(function(response) {
-            console.log(response)
-                if (response.status == 200) {
-                    pointer.details = response.data.data
-                    pointer.tags.push(response.data.data.prefecture_id)
-                    pointer.tags.push(response.data.data.tag)
-                    pointer.tags.push(response.data.data.method)
-                } else {
-                    pointer.$message(response.data.error);
-                    ElementUI.Message({
-                        message: response.data.message.Message
-                    })
-                }
-            })
-            .catch(function(error) {
-                console.log(error);
-            })
+        request.GetUserBaseInfo(pointer)
+        request.HttpRequest(pointer,'/api/v1/tasks/details?id=' + this.$route.params.id,'get',function(response,pointer)
+        {
+                pointer.details = response.data.data
+                pointer.tags.push(response.data.data.Task.prefecture_id)
+                pointer.tags.push(response.data.data.Task.tag)
+                pointer.tags.push(response.data.data.Task.method)
+        },null)
+        request.HttpRequest(pointer,'/api/v1/forum/comments?id='+this.$route.params.id+'limit=11?page=0','get',function(response,pointer)
+        {
+            pointer.comments = response.data.data.Comments
+            for(let i = 0;i<pointer.comments.length;i++)
+            {
+                request.HttpRequest(pointer,'/api/v1/user/others?email=' + pointer.comments[i].Publisher,'get',function(response,pointer)
+                {
+                    pointer.comments[i].UserName = response.data.data.Name
+                    pointer.comments[i].Avatar = response.data.data.IMG.Avatar
+                    pointer.$forceUpdate()
+                    
+                },null)
+            }
+        },null)
     },
     methods: {
-        GetTheTask() {
-            var pointer=this;
-            axios.post('/api/v1/tasks/accept',{'task_id':this.details.ID+""}).then(function (response) {
-                console.log(response)
-                    if(response.status==200)
+        Comment: function() {
+            if(this.text=='')
+            {
+                this.$alert('请输入评论内容')
+                return
+            }
+            let pointer = this;
+            request.HttpRequest(pointer,'/api/v1/forum/comments','post',function(response,pointer)
+            {
+                ElementUI.Message(
                     {
-                        pointer.$message({
-                            message: '接受成功',
-                            type: 'success'
-                        })
-                    }else {
-                        pointer.$message(response.data.error);
-                        ElementUI.Message({  
-                        message: response.data.message.Message
-                        })
+                        message: '发布成功',
+                        type: 'success'
                     }
-                })
-            .catch(function (error) {
-    console.log(error);
-  })
+                )
+                pointer.$router.go (0)
+            },{
+                post_id: this.$route.params.id-'0',
+                content: this.text
+            })
         }
     },
     }

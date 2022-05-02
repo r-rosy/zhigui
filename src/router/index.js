@@ -14,7 +14,7 @@ import ChatPage from '../components/ChatPage.vue'
 import ListPage from '../components/ListPage.vue'
 import ChatDetail from '../components/ChatDetail.vue'
 import Axios from 'axios'
-import ElementUI from 'element-ui'
+import ElementUI, { Message } from 'element-ui'
  
 Vue.use(Router)  //Vue全局使用Router
  
@@ -108,26 +108,28 @@ Axios.interceptors.request.use(config => {
   });
  //=============================
  //响应回来token是否过期
- Axios.interceptors.response.use(response => { 
-   console.log('响应回来：'+response.data.code) 
-   //和后端token失效返回码约定401
-   if (response.data.code == 401) {
-     // 引用elementui message提示框  
-     ElementUI.Message({  
-      message: '身份已失效', 
-      type: 'err'  
-      });
-     //清除token 
-     localStorage.removeItem('zhigui-token');
-     //跳转  
-     router.push({name: 'login'}); 
-    } else { 
-      return response 
-    } 
-   }, 
-  error => { 
-   return Promise.reject(error); 
-   })
+   Axios.interceptors.response.use(response => {
+    return response;
+  },error => {
+    if (error.response) {
+        switch (error.response.status) {
+            // 返回401，清除token信息并跳转到登录页面
+            case 401:
+            localStorage.removeItem('zhigui-token');
+            router.replace({
+                path: '/login'
+                //登录成功后跳入浏览的当前页面
+                // query: {redirect: router.currentRoute.fullPath}
+            })
+            break;
+            case 400||500:
+            Message.error('请求错误400');
+            break;
+        }
+        // 返回接口返回的错误信息
+        return Promise.reject(error);
+    }
+});
 
 
   router.beforeEach((to, from, next) => {
