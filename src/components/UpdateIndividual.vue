@@ -139,7 +139,7 @@ export default {
                 console.log(response)
                 if(response.status==200)
                 {
-                    alert('修改成功!')
+                    pointer.$alert('修改成功!')
                     pointer.$router.push('/individual');
 
                 }else {
