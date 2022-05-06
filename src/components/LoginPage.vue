@@ -57,10 +57,7 @@ export default {
                         localStorage.setItem('zhigui-token',response.data.data)
                         pointer.$router.push('/index');
                     }else {
-                        pointer.$message(response.data.error);
-                        ElementUI.Message({  
-                        message: response.data.message.Message
-                        })
+                        pointer.$message(response.data.message);
                     }
                 })
             .catch(function (error) {

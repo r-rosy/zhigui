@@ -29,10 +29,7 @@ export default {
                     {
                         action(response,pointer);
                     }else {
-                        pointer.$message(response.data.error);
-                        ElementUI.Message({  
-                        message: response.data.message.Message
-                        })
+                        pointer.$message(response.data.message);
                     }
             }
             ).catch(function(error){
