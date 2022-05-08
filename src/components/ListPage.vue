@@ -22,12 +22,12 @@
         <el-table :data="Lister" height="100%" stript style="width: 100%" >
         <el-table-column prop="rank" label="排名" width="180"> </el-table-column>
         <el-table-column prop="name" label="用户名" width="180"> </el-table-column>
-        <el-table-column prop="money" label="收入" width="180"> </el-table-column>
+        <el-table-column prop="money" label="点赞数" width="180"> </el-table-column>
         <el-table-column prop="finish" label="完成数"> </el-table-column>
         <el-table-column prop="continuing" label="进行中"> </el-table-column>
       </el-table>
       <div class="pagi">
-        <el-pagination background layout="prev, pager, next" :total="50">
+        <el-pagination background layout="prev, pager, next" :total="50" style="text-align:center;background-color:white">
     </el-pagination>
     </div>
     </div>  

@@ -91,6 +91,6 @@ export default {
         }
     }
 </script>
-<style>
+<style scoped>
 @import '../assets/css/chat_publish.css';
 </style>

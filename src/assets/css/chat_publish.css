@@ -124,7 +124,7 @@
 #chat_publish .content .roll_back a {
     text-decoration: none;
     color: skyblue;
-    margin-left: -70px;
+    margin-left: -85px;
 }
 #chat_publish .content .content_header * {
     margin-left: 30px;
@@ -137,7 +137,7 @@
     border: 1px solid #1d4cb5;
     border-radius: 4px;
     padding: 8px 0 8px 12px;
-    margin-left: 110px;
+    margin-left: 90px;
 }
 #chat_publish .content  .content_body {
     position: relative;

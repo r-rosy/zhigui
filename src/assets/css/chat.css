@@ -177,7 +177,7 @@
     color: skyblue;
     display: inline-block;
     margin-bottom: 150px;
-    margin-left: 30px;
+    margin-left: 35px;
 }
 
 #chat .more li {
@@ -206,5 +206,5 @@
 }
 
 #chat .publish_new .el-button {
-    margin-right: 175px;
+    margin-right: 130px;
 }
