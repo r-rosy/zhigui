@@ -84,6 +84,8 @@
 
 #index .banner {
     height: 600px;
+    width: 100%;
+    text-align: center;
 }
 #index .banner .w {
     height: 700px;
@@ -134,11 +136,11 @@
 
 #index .recommend {
     float: left;
-    margin-left: 160px;
 }
 
 #index .recommend ul {
     float: left;
+    margin-bottom: 30px;
 }
 
 #index .recommend li {
@@ -183,10 +185,9 @@
 }
 
 #index .study {
-    float: left;
-    margin-left: 160px;
+    position: relative;
     height: 500px;
-    margin: 0px 0px 50px 160px;
+    margin-top: 30px;
 }
 
 #index .box,
@@ -252,10 +253,9 @@
 }
 
 #index .amusement {
-    float: left;
-    margin-left: 160px;
+    position: relative;
     height: 500px;
-    margin: 0px 0px 100px 160px;
+    margin-top: 30px;
 }
 
 #index .amusement .box5,

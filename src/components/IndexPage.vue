@@ -122,7 +122,7 @@
                 </li>
             </ul>
         </div>
-        <div class="footer">
+        <div class="footer w">
             <div class="w">
                 <div class="links">
                     <dl>
@@ -159,10 +159,10 @@ export default {
         return {
             individual: {},
             imgs: [
-                    require('../assets/imgs/春节.jpg'),
-                    require('../assets/imgs/电子游戏.jpg'),
-                    require('../assets/imgs/合作.jpg'),
-                    require('../assets/imgs/竞赛.jpg'),
+                    require('../assets/imgs/1.png'),
+                    require('../assets/imgs/2.png'),
+                    require('../assets/imgs/3.png'),
+                    require('../assets/imgs/4.png'),
                 ]
         }
     },

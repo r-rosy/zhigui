@@ -18,7 +18,7 @@
                 <a href="/individual">{{individual.nick_name}}</a>
             </div>
     </div>
-    <div id="app">
+    <div id="app" class="w">
         <el-table :data="Lister" height="100%" stript style="width: 100%" >
         <el-table-column prop="rank" label="排名" width="180"> </el-table-column>
         <el-table-column prop="name" label="用户名" width="180"> </el-table-column>

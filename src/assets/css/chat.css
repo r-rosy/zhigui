@@ -203,8 +203,6 @@
 }
 #chat .publish_new{
     text-align: right;
-}
-
-#chat .publish_new .el-button {
-    margin-right: 130px;
+    margin-left: 175px;
+    margin-right: 175px;
 }
