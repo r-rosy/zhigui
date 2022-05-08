@@ -13,6 +13,7 @@ import TaskDetail from '../components/TaskDetail.vue'
 import ChatPage from '../components/ChatPage.vue'
 import ListPage from '../components/ListPage.vue'
 import ChatDetail from '../components/ChatDetail.vue'
+import ChatPublish from '../components/ChatPublish.vue'
 import Axios from 'axios'
 import ElementUI, { Message } from 'element-ui'
  
@@ -20,8 +21,13 @@ Vue.use(Router)  //Vue全局使用Router
  
 const router = new Router({
   mode: 'history',
-  routes: [              //配置路由，这里是个数组
-  {
+  routes: [
+    {
+      path: '/',
+      name: 'IndexPage',
+      component: IndexPage
+    },              
+    {
       path:'/register',
       component:RegisterPage,
       name: 'register'
@@ -85,6 +91,11 @@ const router = new Router({
       path:'/chat/detail/:id',
       component: ChatDetail,
       name: 'chat_detail'
+    },
+    {
+      path:'/chat/publish',
+      component: ChatPublish,
+      name: 'chat_publish'
     }
   ]
 })
@@ -93,8 +104,7 @@ export default router
 //设置axios请求头加入token
 Axios.interceptors.request.use(config => { 
   if (config.push == '/'||config.push == '') {
-    console.log('pushing')
-    router.push({name: 'index'}); 
+    router.push('/index'); 
    } else { 
     if (localStorage.getItem('zhigui-token')) { 
       //在请求头加入token，名字要和后端接收请求头的token名字一样 
@@ -122,8 +132,9 @@ Axios.interceptors.request.use(config => {
                 // query: {redirect: router.currentRoute.fullPath}
             })
             break;
-            case 400||500:
-            Message.error('请求错误400');
+            case 400:
+            case 500:
+            Message.error('服务端请求错误400');
             break;
         }
         // 返回接口返回的错误信息

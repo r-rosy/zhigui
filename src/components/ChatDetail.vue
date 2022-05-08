@@ -21,22 +21,12 @@
                 <span><a href="/chat">&lt;返回</a></span>
             </div>
             <div class="like w">
-                <span>热度:{{details.MyWilli=='未发送意愿'?0:details.MyWilli}}</span>
+                <span>热度:{{details.like_num}}</span>
             </div>
             <div class="task_more w">
-                <h2>今天早上在操场捡了一张校园卡</h2>
-                <p>丢失者请联系我,qq23423198</p>
-                <p>是在靠近体育场一侧,是19级王同学的卡</p>
-                <p>发布者： 小雨雨雨雨宇</p>
-                <p>2021年4月23日</p>
-                
-            <div class="demo-image__preview">
-  <el-image v-if="details.Task.Image.Length==0"
-    style="width: 100px; height: 100px"
-    :src="details.Task.Image[0]" 
-    :preview-src-list="srcList">
-  </el-image>
-    </div>    
+                <h2>{{details.title}}</h2>
+                <p>{{details.content}}</p>
+                <p>{{details.create_time}}</p>    
         </div>
     <el-divider></el-divider>
     <div>
@@ -74,12 +64,23 @@
 <script>
 import ElementUI from 'element-ui';
 import request from '../methods/http/sendrequest.js';
+import strings from '../methods/StrHandle/strhandle.js';
 export default {
     data() {
         return {
             tags: [],
             individual: {},
             details: {
+                create_time: '',
+                update_time: '',
+                publisher: '',
+                title: '',
+                content: '',
+                like_num: 0,
+            },
+            pages: {
+                page: 0,
+                limit: 11,
             },
             text: '',
             comments: [],
@@ -88,14 +89,17 @@ export default {
     },
     mounted: function() {
         let pointer = this;
-        request.GetUserBaseInfo(pointer)
-        request.HttpRequest(pointer,'/api/v1/tasks/details?id=' + this.$route.params.id,'get',function(response,pointer)
+        request.GetUserBaseInfo(pointer);
+        request.HttpRequest(pointer,'/api/v1/forum/post?id='+this.$route.params.id+''+'&page='+this.pages.page+'&limit='+this.pages.limit+'','get',function(response,pointer)
         {
-                pointer.details = response.data.data
-                pointer.tags.push(response.data.data.Task.prefecture_id)
-                pointer.tags.push(response.data.data.Task.tag)
-                pointer.tags.push(response.data.data.Task.method)
-        },null)
+            pointer.details.create_time = strings.TimeFormat(response.data.data.Post.CreatedAt)
+            pointer.details.update_time = strings.TimeFormat(response.data.data.Post.UpdatedAt)
+            pointer.details.publisher = response.data.data.Post.Publisher
+            pointer.details.title = response.data.data.Post.Title
+            pointer.details.content = response.data.data.Post.Content
+            pointer.details.like_num = response.data.data.Post.LikeNum
+        },null)  
+    
         request.HttpRequest(pointer,'/api/v1/forum/comments?id='+this.$route.params.id+'limit=11?page=0','get',function(response,pointer)
         {
             pointer.comments = response.data.data.Comments

@@ -24,7 +24,6 @@
 
 <script>
 import axios from "axios"
-import ElementUI from 'element-ui'
 export default {
     name: 'LoginPage',
     data() {

@@ -174,9 +174,10 @@
 }
 
 #chat .more a {
-    color: #333;
+    color: skyblue;
     display: inline-block;
     margin-bottom: 150px;
+    margin-left: 30px;
 }
 
 #chat .more li {
@@ -199,4 +200,11 @@
     font-weight: 700;
     font-size: medium;
     border: none;
+}
+#chat .publish_new{
+    text-align: right;
+}
+
+#chat .publish_new .el-button {
+    margin-right: 175px;
 }

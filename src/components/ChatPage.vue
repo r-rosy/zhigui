@@ -18,6 +18,9 @@
                 <a href="/individual">{{individual.nick_name}}</a>
             </div>
         </div>
+        <div class="publish_new">
+            <el-button type="primary" class="el-button" @click="To('/chat/publish')">New</el-button>
+        </div>
         <div  v-for="item,index in Lister" :key="index" class="num2 w">
              <div class="user1 w">
                 <a href="#"><img class="user_image" :src="item.User.IMG"></a>
@@ -26,7 +29,7 @@
                 <span><h3>{{item.User.Name}}</h3></span>
             </div>
             <div class="more">
-                <a :href="'/chat/detail/'+item.Posts.ID+''">&gt;&gt;详情</a>
+                <a :href="'/chat/detail/'+item.Posts.ID+''">详情</a>
                 <ul>
                     <li></li><span>❤</span>点赞
                     <li></li><span>✉</span>评论
@@ -34,8 +37,8 @@
             </div>
             <div class="discuss1">
                 <h2>{{item.Posts.Title}}</h2>
-                <p>{{item.Posts.Content}}</p>
-                <span>{{item.Posts.CreatedAt}}</span>
+                <p>{{cut(item.Posts.Content)}}</p>
+                <span>{{format(item.Posts.CreatedAt)}}</span>
             </div>
         </div>
         <div class="pagi">
@@ -46,6 +49,7 @@
 </template>
 <script>
 import request from '../methods/http/sendrequest.js'
+import strings from '../methods/StrHandle/strhandle.js'
 export default {
     data() {
         return {
@@ -69,11 +73,31 @@ export default {
             {
                 pointer.number=response.data.data.NUM
                 pointer.Lister = response.data.data.Posts
-            },null)   
-                         
+            },null)                  
     },
     methods: {
-    },
+        format(str) {
+            return strings.TimeFormat(str);
+        },
+        cut(str) {
+            return strings.StrCut(str, 45);
+        },
+        To(url) {
+            this.$router.push(url)
+        }
+        },
+    watch: {
+        currentpage: function(newpage) {
+            this.pages.page = newpage-1
+            let pointer=this
+            request.HttpRequest(pointer,'/api/v1/forum?limit='+this.pages.limit+''+'&page='+this.pages.page+'','get',function(response,pointer)
+            {
+                pointer.number=response.data.data.NUM
+                pointer.Lister = response.data.data.Posts
+            },null)
+
+    }
+}
 }
 </script>
 <style scoped>
